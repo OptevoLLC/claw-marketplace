@@ -39,6 +39,17 @@
 - **root:** infrastructure (the on-box Claude Code agent)
 - **[participant]:** owner workspace, FileBrowser, code-server
 
+## Logins (what the owner uses)
+> Temp passwords are handed to the owner in the build summary and changed on first sign-in —
+> not stored here. This table records WHICH apps need a login and the account name only.
+
+| App | Username | Notes |
+|-----|----------|-------|
+| Vikunja | [owner] | temp password given at handoff → change on first login; **open registration OFF** |
+| FileBrowser | admin | password set at build; change on first login |
+| code-server | — | single password set at build |
+| CloudCLI | [you create on first visit] | self-set username + password |
+
 ## Change log
 | Date | Change | By |
 |------|--------|----|
