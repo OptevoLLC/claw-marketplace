@@ -21,7 +21,7 @@ claude plugin install vps-architect@stack-sovereignty
 
 | Plugin | What it gives your agent |
 |---|---|
-| **vps-architect** | "Your primitives, packaged." The curated self-hosted infrastructure landscape (what you can run + what it replaces) plus the operational skills your on-box agent uses to set up and run your box. Grows one skill per course week. |
+| **vps-architect** | "Your primitives, packaged." The architecture + stewardship judgment to build and run your box well (`vps-architecture`), the curated infrastructure landscape of what you can run and what it replaces (`self-hosted-infrastructure-landscape`), plus the operational skills your agent uses to hand you a task when blocked and to interview you so it works in your context. Grows one skill per course week. |
 
 ## Layout
 
@@ -32,7 +32,10 @@ claw-marketplace/
     └── vps-architect/
         ├── .claude-plugin/plugin.json  # name, version (semver)
         ├── skills/
-        │   ├── self-hosted-infrastructure-landscape/   # Week-1 taught skill
+        │   ├── vps-architecture/                       # CORE: architecture + stewardship
+        │   │   ├── references/  (docker, filesystem, networking, security-and-ops)
+        │   │   └── templates/   (service-manifest, inventory)
+        │   ├── self-hosted-infrastructure-landscape/   # Week-1 taught skill (what to run)
         │   ├── vikunja-assign-to-human/                # operational (D5)
         │   └── grill-me-interview/                     # operational (D11)
         └── CHANGELOG.md

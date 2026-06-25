@@ -8,6 +8,13 @@ bumps the minor version; fixes bump the patch.
 The founding install. Students add this plugin to Claude Code on their box in Week 1.
 
 ### Added
+- **`vps-architecture`** — the **core** skill: the opinionated architecture + stewardship
+  judgment for building and running the owner's box well (compose conventions, the `/srv`
+  file tree, Caddy/networking, hardening tiers, nightly backups, document-as-you-deploy, the
+  add/update/remove service lifecycle, the v5 course-stack defaults) with on-demand
+  `references/` and `templates/`. Forked v5-clean from Optevo's production `vps-architect`
+  skill (that box's copy left untouched) and tuned for a non-technical owner whose agent does
+  the work — teach-as-you-go, subagent-driven, direct-and-verify.
 - **`self-hosted-infrastructure-landscape`** — the Week-1 *taught* skill. The curated map of
   what a non-technical operator can run and what it replaces: the base stack, the
   grows-weekly map (so the agent never installs later-week services early), the
