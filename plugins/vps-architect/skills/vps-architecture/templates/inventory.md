@@ -26,14 +26,13 @@
 | code-server | code.example.com | code-server | 8443 | Running |
 | FileBrowser | files.example.com | filebrowser | 80 | Running |
 | Vikunja | tasks.example.com | vikunja | 3456 | Running |
-| Vikunja DB | — | vikunja-db | 5432 | Running |
 
 > Coming in later weeks (NOT installed yet): Hermes (wk2) · Infisical (wk3) ·
 > Supabase (wk4) · n8n (wk5) · GitHub/plugins (wk6).
 
 ## Backups
-- **Nightly /srv + /home tar:** [Configured / Not] → /var/backups, 7-day retention
-- **Vikunja DB dump:** [Configured / Not] → /srv/vikunja/backups, 14-day retention
+- **Nightly /srv + /home tar:** [Configured / Not] → /var/backups, 14-day retention
+- **Vikunja SQLite snapshot before tar:** [Configured / Not] → `.backup` of /srv/vikunja/data/vikunja.db
 - **Offsite:** [Configured / Not]
 
 ## Users

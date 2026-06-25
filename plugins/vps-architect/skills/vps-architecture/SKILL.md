@@ -106,7 +106,7 @@ These override generic self-hosting defaults; they are the choices this course s
 | Talk-to-the-agent UI | **CloudCLI** (`claudecodeui`) | Browser/phone chat surface — replaces the terminal for the owner |
 | Browser editor | **code-server** | Look at files in a real editor when wanted |
 | File manager | **FileBrowser** | Familiar, Drive-style; **configure to SHOW hidden files** so `.env`/`CLAUDE.md`/`.claude/` are visible |
-| Task board | **Vikunja** | The owner's board *and* where agents hand the owner a task when blocked |
+| Task board | **Vikunja** (embedded **SQLite**) | Owner's board *and* where agents hand the owner a task when blocked. Default to the **SQLite** backend (`VIKUNJA_DATABASE_TYPE=sqlite`, db file at `/srv/vikunja/data/vikunja.db`) — do NOT add a Postgres sidecar on a light Week-1 box. One fewer container, and the db file is captured by the normal `/srv` backup. Give it `start_period: 60s` (it runs migrations on first boot). |
 | VPN / mesh | **Tailscale** | Zero-config private access; emergency path if Caddy/DNS breaks |
 | Filesystem root | **`/srv/<service>/`** | One directory per service, co-located compose+env+data |
 | Docker network | **shared external `srv-net`** | Caddy routes by container name; services reach each other by name |

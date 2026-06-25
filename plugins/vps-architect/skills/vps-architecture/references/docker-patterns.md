@@ -28,7 +28,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 10s
+      start_period: 30s                  # grace window before failures count; raise for slow boots
     logging:                           # cap logs or json-file grows until the disk is full
       driver: json-file
       options:
@@ -63,6 +63,14 @@ healthcheck — don't just `depends_on` the container:
 Always include a healthcheck when the image supports it (HTTP `curl -f`, or `pg_isready` /
 `redis-cli ping` for datastores) and a `start_period` so slow-booting services aren't marked
 unhealthy early. Healthchecks are also what let you *verify* a deploy instead of guessing.
+
+**Migration-heavy apps need a longer `start_period`.** Anything that runs DB migrations on
+first boot (Vikunja, most app+DB stacks) can take 30–60s before it answers its health URL —
+with a 10s grace window it flips to `unhealthy` and shows the owner a scary red tile even
+though it's fine. Use **`start_period: 60s`** for Vikunja specifically, and never let a
+first-boot flap reach the dashboard. After standing such a service up, re-check its status
+once it has settled (`docker ps`) before calling it done — a transient early `unhealthy` is
+not a failure.
 
 ## The shared network
 

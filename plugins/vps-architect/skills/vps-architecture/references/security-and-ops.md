@@ -64,21 +64,25 @@ Caddy rate-limit plugins — real tools for later/heavier setups, not now.
 
 The bind-mount-everything-under-`/srv` layout makes a flat nightly tar sufficient for configs
 and most data. The one correctness trap: **a live database file (SQLite/Postgres) tarred
-mid-write can be torn/corrupt.** So dump each app's DB first, then tar.
+mid-write can be torn/corrupt.** So snapshot each app's DB consistently first, then tar.
+
+On the Week-1 base box the only stateful app is **Vikunja on SQLite** (db at
+`/srv/vikunja/data/vikunja.db`). Take a consistent SQLite snapshot with `.backup` (atomic, no
+downtime), then tar `/srv` and `/home`:
 
 ```bash
 # /etc/cron.d/box-backup
-0 2 * * * root docker exec vikunja-db pg_dump -U vikunja vikunja | gzip > /srv/vikunja/backups/vikunja_$(date +\%Y\%m\%d).sql.gz
+0 2 * * * root docker run --rm -v /srv/vikunja/data:/d keinos/sqlite3 sqlite3 /d/vikunja.db ".backup /d/vikunja.bak" 2>/dev/null
 5 2 * * * root tar czf /var/backups/srv_$(date +\%Y\%m\%d).tar.gz /srv/ 2>/dev/null
 5 2 * * * root tar czf /var/backups/home_$(date +\%Y\%m\%d).tar.gz /home/ 2>/dev/null
-# retention
-0 4 * * * root find /var/backups -name "*.tar.gz" -mtime +7 -delete
-0 4 * * * root find /srv/vikunja/backups -name "*.sql.gz" -mtime +14 -delete
+# retention (14 days)
+0 4 * * * root find /var/backups -name "*.tar.gz" -mtime +14 -delete
 ```
 
-**General rule (not a Postgres-shaped assumption):** for any app that carries its own embedded
-DB, either dump it before the tar (as above) or stop→tar→start in the backup window. Most
-config/data is fine to tar live.
+(If `sqlite3` is already on the host, `sqlite3 /srv/vikunja/data/vikunja.db ".backup …"`
+works without the helper container.) **General rule (not a Postgres-shaped assumption):** for
+any app that carries its own embedded DB, snapshot/dump it before the tar, or stop→tar→start
+in the backup window. Most config/data is fine to tar live.
 
 This is **local-only** — it protects against accidental deletion, not box loss. The first real
 upgrade is **one offsite target**. For an agent-managed, non-technical owner, **Kopia** is the
@@ -87,9 +91,9 @@ above, zstd compression, granular retention) to Backblaze B2 / S3; **Restic** is
 larger-community alternative. Pick one, pin it. Tell the owner in plain words what "your box
 backs itself up every night" means for them.
 
-**Restore:** `cd / && tar xzf /var/backups/srv_<date>.tar.gz` for configs/data;
-`gunzip < /srv/vikunja/backups/vikunja_<date>.sql.gz | docker exec -i vikunja-db psql -U vikunja vikunja`
-for the task board.
+**Restore:** `cd / && tar xzf /var/backups/srv_<date>.tar.gz` brings back every service's
+config/data including Vikunja's SQLite db file — for the base box there's no separate DB
+restore step. Restart the stacks afterward (`docker compose up -d` per `/srv/<service>/`).
 
 ## Resource care (small box, watch memory)
 
