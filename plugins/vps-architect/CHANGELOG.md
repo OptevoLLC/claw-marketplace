@@ -14,7 +14,14 @@ The founding install. Students add this plugin to Claude Code on their box in We
   add/update/remove service lifecycle, the v5 course-stack defaults) with on-demand
   `references/` and `templates/`. Forked v5-clean from Optevo's production `vps-architect`
   skill (that box's copy left untouched) and tuned for a non-technical owner whose agent does
-  the work — teach-as-you-go, subagent-driven, direct-and-verify.
+  the work — teach-as-you-go, subagent-driven, direct-and-verify. Research-hardened against
+  current (2025–26) practice: daemon-wide log rotation (disk-fill protection), `cpus` limits +
+  RAM-headroom rule, HTTP-01 per-subdomain certs as default (stock `caddy:2-alpine` can't
+  issue wildcard certs) + reusable security-headers snippet, SSH lockout-safety protocol +
+  `ed25519` + unattended auto-reboot, per-app embedded-DB backup safety + Kopia offsite, and a
+  read-only Docker socket proxy (`11notes/docker-socket-proxy`, MIT) as default. External
+  skills surveyed — none worth vendoring (Anthropic repos license-unshippable; permissive ones
+  thin); our manifest discipline is ahead of the public skills.
 - **`self-hosted-infrastructure-landscape`** — the Week-1 *taught* skill. The curated map of
   what a non-technical operator can run and what it replaces: the base stack, the
   grows-weekly map (so the agent never installs later-week services early), the

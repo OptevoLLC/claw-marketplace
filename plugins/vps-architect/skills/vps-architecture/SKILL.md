@@ -76,9 +76,12 @@ Templates: `templates/service-manifest.md` (one per deployed service) ·
    database, secrets vault, or automation engine early).
 2. Create `/srv/<service>/`.
 3. Write the compose file (`references/docker-patterns.md`): `container_name` set,
-   `restart: unless-stopped`, on `srv-net`, bind-mounted `./data`, healthcheck, **memory
-   limit**, port bound to `127.0.0.1` (Caddy reaches it by container name).
-4. Add a Caddy subdomain block and reload Caddy (`references/networking.md`).
+   `restart: unless-stopped`, on `srv-net`, bind-mounted `./data`, healthcheck, **memory +
+   cpus limits**, **log caps** (`max-size`/`max-file`), port bound to `127.0.0.1` (Caddy
+   reaches it by container name).
+4. Add a Caddy subdomain block (`import security-headers`) and reload Caddy
+   (`references/networking.md`). Certs are HTTP-01 per-subdomain on the stock image — no DNS
+   token, no custom build.
 5. `docker compose up -d`.
 6. **Verify** — container healthy, the URL loads over HTTPS (real padlock), logs clean.
    Show the owner the check.
@@ -111,6 +114,8 @@ These override generic self-hosting defaults; they are the choices this course s
 | Secrets | **deferred — Infisical arrives Week 3** | No secrets vault on day one; use per-service `.env` until then |
 | Database | **deferred — Supabase arrives Week 4** | No shared Postgres on day one (an app may bring its own embedded DB) |
 | Container logs | **`docker logs` / `docker compose logs`** | No separate log UI needed on a light box |
+| Log rotation | **`json-file` `max-size:10m max-file:3`, daemon-wide** | Unbounded logs fill a small disk and down the box — set in `/etc/docker/daemon.json` at bootstrap |
+| Docker socket access | **read-only proxy** (`11notes/docker-socket-proxy`) | Raw socket = root-equivalent; only the dashboard that needs it gets even the proxy |
 
 ## Diagnostics (in order)
 

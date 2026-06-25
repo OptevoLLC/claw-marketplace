@@ -1,6 +1,8 @@
 # Box Inventory
 
 > Source of truth for this VPS. Update after every deploy, removal, or change.
+> Regenerate the Services table partly from live state (`docker ps`,
+> `docker network inspect srv-net`) so it can't silently drift from reality.
 
 ## Box
 - **Provider / plan:** [e.g. DigitalOcean, 2 vCPU / 4 GB / 80 GB]
