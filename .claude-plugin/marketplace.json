@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "stack-sovereignty",
+  "description": "Optevo Claw — Stack Sovereignty course marketplace. Owned-stack capability for non-technical operators running their own VPS, one accreted skill per week.",
+  "owner": {
+    "name": "Optevo Claw",
+    "url": "https://optevoclaw.com"
+  },
+  "plugins": [
+    {
+      "name": "vps-architect",
+      "description": "The Stack Sovereignty class plugin — 'your primitives, packaged.' Gives the agent on your VPS the curated infrastructure landscape (what you can run and what it replaces), plus the operational skills it needs to set up and run your box: hand you a clear task when it's blocked, and interview you so everything it does is tuned to you. Grows one skill per course week.",
+      "source": "./plugins/vps-architect",
+      "category": "infrastructure"
+    }
+  ]
+}

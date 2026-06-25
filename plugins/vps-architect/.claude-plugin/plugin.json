@@ -1,0 +1,20 @@
+{
+  "name": "vps-architect",
+  "version": "0.1.0",
+  "description": "The Stack Sovereignty class plugin — 'your primitives, packaged.' Carries the curated self-hosted infrastructure landscape plus the operational skills your on-box agent uses to stand up and run your VPS. Accretes one skill per course week.",
+  "author": {
+    "name": "Optevo Claw",
+    "url": "https://optevoclaw.com"
+  },
+  "homepage": "https://optevoclaw.com",
+  "license": "MIT",
+  "keywords": [
+    "self-hosting",
+    "vps",
+    "docker",
+    "caddy",
+    "stack-sovereignty",
+    "ai-agent",
+    "non-technical"
+  ]
+}

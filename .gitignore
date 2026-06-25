@@ -1,0 +1,8 @@
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
+
+# Local notes not for the marketplace
+/scratch/
+*.local.md
