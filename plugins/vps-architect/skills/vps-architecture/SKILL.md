@@ -136,3 +136,17 @@ username. Then stand up the **base stack only** (Caddy · Homepage · CloudCLI �
 FileBrowser · Vikunja · nightly backups · `/srv/_docs/`) following the lifecycle above,
 teaching as you go. The base stack is intentionally infra-light — everything heavier arrives
 in a later week as a felt upgrade.
+
+### Credential handoff — no password may live only behind a login (the chicken-and-egg rule)
+A non-technical owner cannot retrieve a password that's stored only in an app's `.env`, because
+the tools for reading `.env` (FileBrowser, code-server) are themselves locked by those very
+passwords. So:
+- For **every** app that needs a login, set a **simple temporary password** and **state it
+  plainly in your final summary's LOGINS block** (username + temp password per app), with
+  "change it on first login." Never make the owner dig a password out of `.env`.
+- Name **CloudCLI the front door**: its first visitor creates their own account (no
+  pre-shared secret), so it's the one door always openable. Tell the owner to start there —
+  and that from CloudCLI they can always just *ask you* for any credential, since you can read
+  the box's files. The terminal/provider console is the technical fallback.
+- `/srv/_docs/inventory.md` records account *names* and "change on first login" — not secret
+  values.
