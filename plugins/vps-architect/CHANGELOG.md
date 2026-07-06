@@ -3,6 +3,46 @@
 All notable changes per course week. Semver: each course week that adds a *taught* skill
 bumps the minor version; fixes bump the patch.
 
+## [0.2.0] — Week 2 (draft / pre-validation)
+
+The "My Agent & Me" release. Handed off at the end of Class 2: Claude Code becomes the
+student's **Hermes IT admin**, so Hermes operation after the first wizard run is a plain-
+language conversation, never a terminal task.
+
+### Added
+- **`hermes-admin`** — the Week-2 *taught* skill (skill #2). Manage, configure, and
+  optimize the Hermes agent + its profiles on the owner's box: health/troubleshooting
+  (`status`/`doctor`/gateway/logs triage), settings + per-profile model right-sizing,
+  profile lifecycle (the fleet: create/clone/rename/export), persona & briefing tuning,
+  skills install + **class-skill mirroring into Hermes** (proposed mechanism for
+  COURSE-BRIEF open item #6), memory inspection/correction (owned, readable files),
+  gateway setup/repair (token steps arrive as Vikunja human-tasks), updates & backups.
+  Hard rules: direct-and-verify after every change, never echo secrets, backup before
+  change, plain-English three-line reporting for a non-technical owner.
+  Includes **`references/agent-sources.md`** — the verified "where the pros publish
+  their agents" shopping map (official + community collections + the Hermes hub, links
+  verified 2026-07-06) and the fetch → vet-as-untrusted → interview-the-candidate →
+  tailor → verify workflow. Powers the Class-2 "never hire from scratch" move and the
+  weekend hire-#2 project. Re-verify links each cohort.
+
+- **`course-briefings`** *(operational)* — the P-AGENTDROP convention (see
+  `PORTAL-EXPERIENCE.md` §4.3): teaches the on-box agent to read the `~/course/`
+  room where the portal publishes weekly drops (recap · personal recap · project ·
+  prompts · shelf), to lead with the owner's personal recap as context, to keep
+  Hermes profiles in the loop, and to treat missing drops as facts rather than gaps
+  to fill. Makes "the portal feeds your staff" real on the student side; the
+  portal-side publisher is build item P-AGENTDROP.
+
+### Pending validation (before Class 2)
+- Run the full admin loop against a real student-shaped install (Docker layout): detect
+  install → profile create/clone → persona edit → skill mirror + `/reload-skills` →
+  gateway repair → memory summary.
+- `course-briefings`: publish one real drop end-to-end (portal → `~/course/` → Vikunja
+  announce → agent answers "what's my project this week?" correctly).
+- Confirm the Hermes→Claude Code delegation path used in the class demo (movement 4/4).
+- Derek: bless skill-mirroring as the open-item-#6 mechanism; confirm student install
+  surface (Docker vs. native) and demo gateway (recommend cohort Discord).
+
 ## [0.1.0] — Week 1 (unreleased / validating)
 
 The founding install. Students add this plugin to Claude Code on their box in Week 1.
