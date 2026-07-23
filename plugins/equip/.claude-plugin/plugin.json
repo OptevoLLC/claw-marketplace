@@ -1,0 +1,23 @@
+{
+  "name": "equip",
+  "description": "Equip a project folder for the work ahead. Interviews you about the task and where the project lives (existing folder or scaffolded from scratch), inventories the skills/agents/context already available at project and global level, searches the ecosystem for well-regarded existing skills to fill gaps, and only authors what's genuinely missing — defaulting everything to project level. Reuse before build.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Optevo Claw",
+    "url": "https://optevoclaw.com"
+  },
+  "homepage": "https://github.com/OptevoLLC/claw-marketplace",
+  "repository": "https://github.com/OptevoLLC/claw-marketplace",
+  "license": "MIT",
+  "keywords": [
+    "equip",
+    "scaffolding",
+    "skills",
+    "gap-analysis",
+    "meta-skill",
+    "claude-code",
+    "claude-code-plugin",
+    "project-setup",
+    "capability-stack"
+  ]
+}

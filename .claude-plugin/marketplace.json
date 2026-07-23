@@ -12,6 +12,12 @@
       "description": "The Stack Sovereignty class plugin — 'your primitives, packaged.' Gives the agent on your VPS the curated infrastructure landscape (what you can run and what it replaces), plus the operational skills it needs to set up and run your box: hand you a clear task when it's blocked, and interview you so everything it does is tuned to you. Grows one skill per course week.",
       "source": "./plugins/vps-architect",
       "category": "infrastructure"
+    },
+    {
+      "name": "equip",
+      "description": "Equip a project folder for the work ahead — reuse before build. Interviews you about the task, confirms where the project lives (existing folder or scaffolded from scratch), inventories what's already available at project and global level, searches the ecosystem for well-regarded existing skills, and only authors what's genuinely missing. Everything lands at project level unless you say otherwise.",
+      "source": "./plugins/equip",
+      "category": "workflow"
     }
   ]
 }
