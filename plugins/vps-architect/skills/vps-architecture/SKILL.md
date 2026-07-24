@@ -70,8 +70,9 @@ Templates: `templates/service-manifest.md` (one per deployed service) ·
 
 **Adding a service:**
 1. Choose the right tool — if unsure, use the `self-hosted-infrastructure-landscape` skill.
-   First check it isn't a service that belongs to a *later course week* (don't install a
-   database, secrets vault, or automation engine early).
+   First check it isn't a service that belongs to a *later course week* (the map:
+   `../self-hosted-infrastructure-landscape/references/weekly-map.md` — no database,
+   secrets vault, or automation engine early).
 2. Create `/srv/<service>/`.
 3. Write the compose file (`references/docker-patterns.md`): `container_name` set,
    `restart: unless-stopped`, on `srv-net`, bind-mounted `./data`, healthcheck, **memory +

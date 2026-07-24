@@ -3,6 +3,17 @@
 All notable changes per course week. Semver: each course week that adds a *taught* skill
 bumps the minor version; fixes bump the patch.
 
+## [0.2.2] — landscape restructured: behavior vs. data (2026-07-24)
+
+`self-hosted-infrastructure-landscape` split along the skill-vs-reference
+line: SKILL.md now carries only *behavior* (how to answer, the
+check-the-weekly-map-first rule, the decision frame) and the volatile data
+moved to `references/` — `base-stack.md`, `weekly-map.md`, `catalog.md` —
+with read-the-file-don't-answer-from-memory guidance. Per-cohort updates
+(new week map, catalog additions, the portal `oss-cheatsheet` sync) are now
+data-file edits that never touch behavior. `vps-architecture`'s lifecycle
+step 1 points directly at the weekly-map reference.
+
 ## [0.2.1] — best-practices pass (2026-07-24)
 
 Skill-creator audit across all six skills. Fixed: manifest version brought in
