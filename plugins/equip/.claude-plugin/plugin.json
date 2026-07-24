@@ -1,7 +1,7 @@
 {
   "name": "equip",
   "description": "Equip a project folder for the work ahead. Interviews you about the task and where the project lives (existing folder or scaffolded from scratch), recommends a process weight for the work itself (planf3, grilling, wayfinder, superpowers, BMAD — or none), inventories the skills/agents/context already available at project and global level, searches the ecosystem for well-regarded existing skills to fill gaps, and only authors what's genuinely missing — defaulting everything to project level. Runs in easy mode (good defaults, done for you) or expert mode (tune every choice together). Equips the session then stops — never starts the work or writes the plan itself — and supports a post-plan re-equip that derives specific skills from your spec or ticket map. Finishes by offering an explainer of the setup: a chat breakdown or a self-contained HTML page saved into the project. Reuse before build.",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "author": {
     "name": "Optevo Claw",
     "url": "https://optevoclaw.com"

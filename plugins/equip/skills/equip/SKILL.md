@@ -84,10 +84,10 @@ Equipping happens twice around a plan:
    file format to parse, a validation the spec demands). This is where the
    skills nobody could anticipate pre-planning get added.
 
-Trigger the post-plan form when the user says "equip against the plan",
-points at a spec/plan file, or re-runs equip in a folder whose methodology
-has produced planning artifacts (a `specs/` dir, a wayfinder map) since the
-last run.
+The post-plan form has its own entry point — the `/equip-plan` command — and
+also triggers when the user says "equip against the plan", points at a
+spec/plan file, or re-runs equip in a folder whose methodology has produced
+planning artifacts (a `specs/` dir, a wayfinder map) since the last run.
 
 Any repeat run — post-plan or otherwise — **diffs instead of rebuilding**:
 re-run the inventory, show what changed, propose only the delta, and never

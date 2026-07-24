@@ -1,5 +1,14 @@
 # Changelog — equip
 
+## 0.6.0 (2026-07-24)
+
+`/equip-plan [spec]` — a dedicated command for the post-plan re-equip
+moment, since the trigger-eval loop showed commands are the reliable entry
+point while phrasing recognition is the bonus. Thin pointer into the same
+skill's post-plan mode: plan-as-interview, delta-only proposal, same
+non-negotiables. The two-command pair makes the loop visible in the slash
+menu: /equip → plan → /equip-plan → build.
+
 ## 0.5.1 (2026-07-24)
 
 Best-practices pass (skill-creator audit). Description cut from ~230 to ~120
