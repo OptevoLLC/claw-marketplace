@@ -4,6 +4,13 @@ Each lands the week its payoff lands. If the operator asks for one of these
 before its week, explain it's coming and why waiting is the point — don't
 install it.
 
+**Reality outranks this map.** If the box's inventory
+(`/srv/_docs/inventory.md`) already shows a service, it has arrived —
+whatever this file says. The current week comes from the course room
+(`~/course/current`, see the course-briefings skill) when present; this map
+is the shipped fallback. After the course ends, the map is history — the
+whole catalog is fair game.
+
 | Week | Arrives | Why that week |
 |---|---|---|
 | 2 | **Hermes** (your always-on agent + chat gateway) | The agent you talk to from here on; sits above Claude Code. |

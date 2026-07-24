@@ -3,6 +3,19 @@
 All notable changes per course week. Semver: each course week that adds a *taught* skill
 bumps the minor version; fixes bump the patch.
 
+## [0.2.3] — reality governs box state, not shipped files (2026-07-24)
+
+`base-stack.md` removed: a static reference may not claim what's running on
+the box — that's the inventory's job (`/srv/_docs/inventory.md`, verified by
+`docker ps`). The landscape skill now routes by where truth lives: box state
+→ reality; what-an-app-is/replaces → `catalog.md` (which absorbed the base
+stack's durable "what it replaces" rows, explicitly framed as
+bootstrap-ships-these, inventory-decides-if-present); install timing →
+`weekly-map.md`, now with reality-outranks-the-map ordering (already
+installed = already arrived; current week from `~/course/current` when
+present; post-course, the map is history). Makes the skill durable beyond
+the class artifact.
+
 ## [0.2.2] — landscape restructured: behavior vs. data (2026-07-24)
 
 `self-hosted-infrastructure-landscape` split along the skill-vs-reference
