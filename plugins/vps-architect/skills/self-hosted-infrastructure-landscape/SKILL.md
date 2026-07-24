@@ -34,7 +34,7 @@ thing replace?" — without sending them into self-hosting forums. Opinionated:
   early. Week 1 stays infra-light on purpose.
 - Pair installs with the standard lifecycle (own compose under `/srv/<service>/`, shared
   `srv-net`, Caddy subdomain, a Homepage tile, a `/srv/_docs/` manifest). The
-  `vps-architect` *build* skill carries the deep how-to; this skill carries the *what & why*.
+  `vps-architecture` skill carries the deep how-to; this skill carries the *what & why*.
 
 ## The base stack (Week 1 — already on the box)
 
@@ -103,6 +103,3 @@ Pitch this at non-technical judgment when they're unsure about an app:
    Week 4), clear web UI. Save the heavy ones for when the box has grown.
 4. **Install one, verify it, then decide on the next.** Don't bulk-install. The pattern —
    ask → it appears as a tile → you click and confirm — is the skill; repetition builds it.
-
-> Keep this catalog in sync with the human-browsable open-source app DB in the portal
-> (the `oss-cheatsheet`). Same source list, two faces — they must not drift.

@@ -12,12 +12,11 @@ description: >
 
 # The "Grill Me" Interview
 
-Adapted from Matt Pocock's "grill me" pattern: instead of guessing what the user wants,
-*interview* them — one question at a time, digging where it's interesting — then write
-down what you learned so you can act on their specific frame from here on.
-
-> **Source note (validate before shipping):** confirm attribution + the exact pattern from
-> Matt Pocock's published version; refine these questions against it. This is a solid v0.
+Adapted from Matt Pocock's "grill me" pattern (published as `grill-me` and `grilling`
+in [mattpocock/skills](https://github.com/mattpocock/skills)): instead of guessing what
+the user wants, *interview* them — one question at a time, digging where it's
+interesting — then write down what you learned so you can act on their specific frame
+from here on.
 
 ## The rules of a good grilling
 

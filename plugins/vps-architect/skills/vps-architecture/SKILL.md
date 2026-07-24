@@ -7,10 +7,8 @@ description: >
   hardening or firewalling, setting up backups, organizing the /srv file tree, documenting
   what you built, or troubleshooting a container. Also trigger on "set up my box",
   "add an app", "deploy this", "is my box secure?", "where does this go?", "my container
-  won't start", "what's a good way to run X?". This is the authoritative how-to for all
-  infrastructure decisions on the operator's box — sound defaults, the service lifecycle,
-  and the file/network/security conventions that keep an owned box legible and safe. Pair
-  it with self-hosted-infrastructure-landscape (what to run) and vikunja-assign-to-human
+  won't start", "what's a good way to run X?". Pair it with
+  self-hosted-infrastructure-landscape (what to run) and vikunja-assign-to-human
   (handing the owner a task when blocked).
 ---
 
@@ -106,7 +104,7 @@ These override generic self-hosting defaults; they are the choices this course s
 | Talk-to-the-agent UI | **CloudCLI** (`claudecodeui`) | Browser/phone chat surface — replaces the terminal for the owner |
 | Browser editor | **code-server** | Look at files in a real editor when wanted |
 | File manager | **FileBrowser** | Familiar, Drive-style; **configure to SHOW hidden files** so `.env`/`CLAUDE.md`/`.claude/` are visible |
-| Task board | **Vikunja** (embedded **SQLite**) | Owner's board *and* where agents hand the owner a task when blocked. Default to the **SQLite** backend (`VIKUNJA_DATABASE_TYPE=sqlite`, db file at `/srv/vikunja/data/vikunja.db`) — do NOT add a Postgres sidecar on a light Week-1 box. One fewer container, and the db file is captured by the normal `/srv` backup. Give it `start_period: 60s` (it runs migrations on first boot). **Account setup (or the owner sees a blank board):** create exactly ONE account — the owner's — with a *temporary* password, then set `VIKUNJA_SERVICE_ENABLEREGISTRATION=false` so no one can sign up a second empty account (registration left on is why an owner self-registers and sees none of your tasks). Hand the owner the username + temp password **in the final summary** and tell them to change it on first login — do NOT bury it in `.env`. Create a separate API token (chmod 600 file) for agents and file all agent tasks into the **owner's** board. |
+| Task board | **Vikunja** (embedded **SQLite**) | Owner's board *and* where agents hand the owner a task when blocked. Setup has real traps — see "Vikunja specifics" below the table. |
 | VPN / mesh | **Tailscale** | Zero-config private access; emergency path if Caddy/DNS breaks |
 | Filesystem root | **`/srv/<service>/`** | One directory per service, co-located compose+env+data |
 | Docker network | **shared external `srv-net`** | Caddy routes by container name; services reach each other by name |
@@ -116,6 +114,21 @@ These override generic self-hosting defaults; they are the choices this course s
 | Container logs | **`docker logs` / `docker compose logs`** | No separate log UI needed on a light box |
 | Log rotation | **`json-file` `max-size:10m max-file:3`, daemon-wide** | Unbounded logs fill a small disk and down the box — set in `/etc/docker/daemon.json` at bootstrap |
 | Docker socket access | **read-only proxy** (`11notes/docker-socket-proxy`) | Raw socket = root-equivalent; only the dashboard that needs it gets even the proxy |
+
+### Vikunja specifics (the blank-board trap)
+
+- **SQLite backend** (`VIKUNJA_DATABASE_TYPE=sqlite`, db at
+  `/srv/vikunja/data/vikunja.db`) — no Postgres sidecar on a light Week-1 box.
+  One fewer container, and the db file rides the normal `/srv` backup.
+- `start_period: 60s` on the healthcheck — it runs migrations on first boot.
+- **Create exactly ONE account — the owner's — with a temporary password, then
+  set `VIKUNJA_SERVICE_ENABLEREGISTRATION=false`.** Registration left on is how
+  an owner self-registers a second, empty account and concludes the board is
+  broken because none of your tasks are on it.
+- Hand the username + temp password to the owner **in the final summary**
+  ("change it on first login") — never make them dig it out of `.env`.
+- Create a separate scoped API token for agents (chmod 600 file) and file all
+  agent tasks into the **owner's** board.
 
 ## Diagnostics (in order)
 

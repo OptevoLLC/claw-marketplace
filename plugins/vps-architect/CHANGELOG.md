@@ -3,6 +3,20 @@
 All notable changes per course week. Semver: each course week that adds a *taught* skill
 bumps the minor version; fixes bump the patch.
 
+## [0.2.1] — best-practices pass (2026-07-24)
+
+Skill-creator audit across all six skills. Fixed: manifest version brought in
+line with this changelog (plugin.json had stayed at 0.1.0 through 0.2.0);
+`grill-me-interview`'s shipped "validate before shipping" source note resolved
+with verified attribution (mattpocock/skills publishes `grill-me`/`grilling` —
+confirmed 2026-07-24, closing that 0.1.0 pending-validation item);
+`self-hosted-infrastructure-landscape`'s cross-reference to the build skill
+corrected (`vps-architect` → `vps-architecture`) and its maintainer-facing
+oss-cheatsheet sync note moved here (authors: keep the catalog in sync with the
+portal's `oss-cheatsheet` — same source list, two faces, must not drift);
+`vps-architecture`'s ~150-word Vikunja table cell unpacked into a "Vikunja
+specifics" subsection and its description trimmed. No behavior changes.
+
 ## [0.2.0] — Week 2 (draft / pre-validation)
 
 The "My Agent & Me" release. Handed off at the end of Class 2: Claude Code becomes the
