@@ -1,5 +1,15 @@
 # Changelog — equip
 
+## 0.5.0 (2026-07-24)
+
+Guardrail from first field test: equip ends where the work begins. Hard
+boundary — never start the project task, never write the plan/spec (install
+planf3, don't run it), always end with a handoff to the first real move.
+Equip formalized as two moments: pre-plan pass (general capabilities,
+deliberately approximate) and post-plan re-equip ("equip against the plan" —
+the spec/ticket map becomes the interview; derive concrete skills from
+planned steps, propose only the delta).
+
 ## 0.4.0 (2026-07-24)
 
 Easy/expert mode, established first (inferred from phrasing or one plain

@@ -31,6 +31,18 @@ recommends how the work itself should run and offers to install the framework:
 Always the lightest thing that fits — heavy process on a small task burns the
 session on ceremony.
 
+**Equip never does the work.** It sets up the session, hands you the first
+move ("fresh session, run /planf3"), and stops — planning and building belong
+to the methodology. And because a plan surfaces needs no interview can
+anticipate, equip runs twice: a **pre-plan pass** (general capabilities, this
+folder, this methodology) and a **post-plan re-equip** — come back with
+"equip against the plan" and it reads your spec or ticket map, derives the
+specific skills the planned steps actually need, and proposes only the delta.
+
+```
+/equip  →  plan (your methodology)  →  /equip against the plan  →  build
+```
+
 Two more disciplines it teaches (and enforces):
 
 - **Reuse before build.** Never author a skill until you've checked that it

@@ -1,6 +1,6 @@
 ---
 name: equip
-description: Equip a project folder for a task. Interviews the user about the work and confirms where the project lives (existing folder, or a new folder scaffolded from scratch), recommends a process weight/methodology for the work (none, spec-first like planf3, plan grilling, wayfinder for large fuzzy efforts, superpowers, BMAD), inventories skills/agents/commands/context already available at project and global level, searches marketplaces and GitHub for well-regarded existing skills to fill gaps, and only authors what is genuinely missing — defaulting everything to project level. Runs in easy mode (good defaults, minimal questions, done for you) or expert mode (walk every choice together and optimize). Use whenever the user runs /equip, says "equip this project", "set up this folder for X", "just set me up for X", "start a new project for X", "what am I missing for this task", "what process/framework should I use for this", "scaffold my session", "gap analysis", or is starting a new kind of work in a folder that has no supporting infrastructure yet. Also use for follow-ups: "re-equip", "update the equipment", "we added a new task type".
+description: Equip a project folder for a task. Interviews the user about the work and confirms where the project lives (existing folder, or a new folder scaffolded from scratch), recommends a process weight/methodology for the work (none, spec-first like planf3, plan grilling, wayfinder for large fuzzy efforts, superpowers, BMAD), inventories skills/agents/commands/context already available at project and global level, searches marketplaces and GitHub for well-regarded existing skills to fill gaps, and only authors what is genuinely missing — defaulting everything to project level. Runs in easy mode (good defaults, minimal questions, done for you) or expert mode (walk every choice together and optimize). Equips the session only — it never starts the project work or writes the project's plan. Use whenever the user runs /equip, says "equip this project", "set up this folder for X", "just set me up for X", "start a new project for X", "what am I missing for this task", "what process/framework should I use for this", "scaffold my session", "gap analysis", or is starting a new kind of work in a folder that has no supporting infrastructure yet. Also use for the post-plan pass: "equip against the plan", "the plan is done — what skills do we need", a spec/plan file is pointed at, "re-equip", "update the equipment", "we added a new task type".
 ---
 
 # Equip — reuse before build
@@ -38,6 +38,45 @@ Two machine realities to state honestly in the plan:
 
 The Equip Plan table carries a **Scope** column, and any `global` row must be
 called out for confirmation before building.
+
+## Hard boundary: equip ends where the work begins
+
+Equip's deliverable is an **equipped session** — never the work itself, and
+never the project's plan. When the plan is approved and built, you: verify,
+report, offer the explainer, and **stop**. You do NOT:
+
+- start executing the project task ("while I'm here, let me draft the first
+  newsletter…")
+- write the project's plan or spec — that belongs to the chosen methodology,
+  in its own session. If the user chose planf3, equip *installs* planf3 and
+  ends with "start a fresh session and run /planf3" — it does not run it.
+- create any work-product files beyond the equipment itself (skills, agents,
+  commands, context docs, scaffold).
+
+The last line of an equip run is a handoff: what was set up, and the exact
+next move to begin the actual work.
+
+## Equip is two moments, not one
+
+The handoff matters because equipping happens twice around a plan:
+
+1. **Pre-plan equip** (this skill's default) — before any plan exists.
+   Necessarily approximate: equip the *general* capabilities the interview
+   surfaces (domain context, sources, methodology, foundational skills) and
+   deliberately DON'T chase fine-grained skills you're guessing at. Say so in
+   the plan: "specific needs will surface once you've planned — re-equip
+   then."
+2. **Post-plan re-equip** — after the methodology has produced a plan, spec,
+   or ticket map, run equip *against that document*: read it, derive concrete
+   capabilities from the actual planned steps (a real API to integrate, a
+   file format to parse, a validation the spec demands), diff against current
+   equipment, and propose only the delta. This is where the skills nobody
+   could anticipate pre-planning get added.
+
+Trigger the post-plan form when the user says "equip against the plan", "the
+plan's done — what do we need", points you at a spec/plan file, or re-runs
+/equip in a folder whose methodology has produced planning artifacts (a
+`specs/` dir, a wayfinder map) since the last equip.
 
 ## Two modes: easy and expert
 
@@ -111,6 +150,10 @@ questions, in expert mode up to 5–6. You need:
 Distill the answers into 3–7 named **required capabilities** (e.g. "draft X
 threads in brand voice", "publish to Ghost", "validate frontmatter"). These
 drive everything downstream.
+
+**Post-plan pass:** when a plan/spec/ticket map exists, skip most of the
+interview — the document IS the interview. Read it and derive capabilities
+from the concrete planned steps, then proceed to inventory as normal.
 
 ### Phase 2 — Inventory
 
@@ -246,7 +289,9 @@ Prefer the lightest component that does the job:
 - Each authored skill: run one realistic should-trigger prompt and one
   near-miss should-NOT-trigger prompt (see `references/skill-authoring.md`).
 - Each install: confirm the skill/command appears (`claude plugin list`).
-- Report: what was added, where, and the one-line "how to use it" for each.
+- Report: what was added, where, the one-line "how to use it" for each — and
+  the handoff: the exact next move to begin the actual work (e.g. "fresh
+  session, run /planf3 — then come back and re-equip against the spec").
 
 ### Explain (optional, offered — never forced)
 

@@ -51,3 +51,12 @@ Use the `equip` skill and follow its four phases in order:
 Do not create any files or install anything before the plan is approved, and
 never write to `~/.claude/` (global level) without the user explicitly
 confirming that specific row.
+
+HARD BOUNDARY: equip the session, then STOP. Do not start the project work,
+do not write the project's plan or spec (that belongs to the chosen
+methodology in its own session — install planf3, don't run it), and do not
+create work-product files. End with a handoff: what was set up and the exact
+next move to begin the work. Note in the plan that specific skills will
+surface once a plan exists — when the user returns with "equip against the
+plan" or points at a spec, derive capabilities from that document instead of
+re-interviewing and propose only the delta.
