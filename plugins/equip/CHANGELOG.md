@@ -1,5 +1,15 @@
 # Changelog — equip
 
+## 0.5.1 (2026-07-24)
+
+Best-practices pass (skill-creator audit). Description cut from ~230 to ~120
+words. Structure consolidated: scattered invariants merged into one
+"Non-negotiables" section (plan gate, project scope, work boundary — each
+with its why); duplicate "Re-equipping" section folded into "Two moments";
+phases moved up. Command file slimmed to a thin pointer so the skill is the
+single source of truth. Unexplained ALL-CAPS softened. No behavior changes
+intended.
+
 ## 0.5.0 (2026-07-24)
 
 Guardrail from first field test: equip ends where the work begins. Hard

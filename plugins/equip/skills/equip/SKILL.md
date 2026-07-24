@@ -1,6 +1,6 @@
 ---
 name: equip
-description: Equip a project folder for a task. Interviews the user about the work and confirms where the project lives (existing folder, or a new folder scaffolded from scratch), recommends a process weight/methodology for the work (none, spec-first like planf3, plan grilling, wayfinder for large fuzzy efforts, superpowers, BMAD), inventories skills/agents/commands/context already available at project and global level, searches marketplaces and GitHub for well-regarded existing skills to fill gaps, and only authors what is genuinely missing — defaulting everything to project level. Runs in easy mode (good defaults, minimal questions, done for you) or expert mode (walk every choice together and optimize). Equips the session only — it never starts the project work or writes the project's plan. Use whenever the user runs /equip, says "equip this project", "set up this folder for X", "just set me up for X", "start a new project for X", "what am I missing for this task", "what process/framework should I use for this", "scaffold my session", "gap analysis", or is starting a new kind of work in a folder that has no supporting infrastructure yet. Also use for the post-plan pass: "equip against the plan", "the plan is done — what skills do we need", a spec/plan file is pointed at, "re-equip", "update the equipment", "we added a new task type".
+description: Equip a project folder for a task — interview the user, inventory existing skills/context, search the ecosystem for well-regarded skills, and only author what's missing, with an approved plan before anything is created. Recommends a process methodology (planf3, grilling, wayfinder, superpowers, BMAD — or none) and defaults everything to project scope. Use for /equip, "equip this project", "set up this folder for X", "just set me up", "start a new project for X", "what am I missing for this task", "what process/framework should I use", "gap analysis", or any new kind of work in an unequipped folder. Also for the post-plan pass — "equip against the plan", "re-equip", or a spec/plan file pointed at to derive skill needs from. Equips the session only; never does the project work itself.
 ---
 
 # Equip — reuse before build
@@ -8,179 +8,150 @@ description: Equip a project folder for a task. Interviews the user about the wo
 Prepare a project folder so a Claude session does its best work on a specific
 kind of task. The core discipline: **never author a skill until you have
 checked that (a) it doesn't already exist here and (b) nobody in the ecosystem
-has already written a better one.**
+has already written a better one.** The output of a run is an approved
+**Equip Plan**, then the smallest set of changes that closes the gaps:
+installed plugins, borrowed skills, context docs, authored skills, agents,
+commands — in that order of preference.
 
-The output of an equip run is an approved **Equip Plan** and then the smallest
-set of changes that closes the gaps: installed plugins, borrowed skills,
-authored skills, context docs, agents, commands — in that order of preference.
+## The four phases
 
-## Scope: project level by default
+```
+1. INTERVIEW   what is the work, really — and how should it run?
+2. INVENTORY   what do we already have, right here?
+3. SEARCH      who has already solved the gaps well?
+4. PROPOSE     plan → approval → build only the remainder
+```
 
-Equipment belongs to the project. Every component you create — skills, agents,
-commands, hooks, context docs — goes in the **target folder's** `.claude/` and
-CLAUDE.md, not in `~/.claude/`, so it travels with the folder, can't pollute
-unrelated sessions, and is visible to anyone who opens the project.
+Never skip 2 or 3 to jump to authoring. A maintained community skill beats a
+one-session homebrew, and an installed plugin beats both for upgrades.
 
-Go **global** (`~/.claude/skills/`, `~/.claude/agents/`, user-level CLAUDE.md)
-only when BOTH hold: the capability is genuinely cross-project (voice, personal
-conventions, machine-wide infrastructure), AND the user explicitly confirms
-after you flag it. Never silently write to user level.
+## Non-negotiables (any mode, any phase)
 
-Two machine realities to state honestly in the plan:
-
-- `claude plugin install` lands at **user scope** on this machine — the plugin
-  becomes available everywhere, not just here. That's fine for genuinely
-  general tools; for a project-specific capability, prefer **borrowing** the
-  skill into the project's `.claude/skills/` instead.
-- The inventory must label what it finds by scope (session / project / global /
-  plugin), because "already covered globally" and "already covered in this
-  folder" have different implications for portability.
-
-The Equip Plan table carries a **Scope** column, and any `global` row must be
-called out for confirmation before building.
-
-## Hard boundary: equip ends where the work begins
-
-Equip's deliverable is an **equipped session** — never the work itself, and
-never the project's plan. When the plan is approved and built, you: verify,
-report, offer the explainer, and **stop**. You do NOT:
-
-- start executing the project task ("while I'm here, let me draft the first
-  newsletter…")
-- write the project's plan or spec — that belongs to the chosen methodology,
-  in its own session. If the user chose planf3, equip *installs* planf3 and
-  ends with "start a fresh session and run /planf3" — it does not run it.
-- create any work-product files beyond the equipment itself (skills, agents,
-  commands, context docs, scaffold).
-
-The last line of an equip run is a handoff: what was set up, and the exact
-next move to begin the actual work.
-
-## Equip is two moments, not one
-
-The handoff matters because equipping happens twice around a plan:
-
-1. **Pre-plan equip** (this skill's default) — before any plan exists.
-   Necessarily approximate: equip the *general* capabilities the interview
-   surfaces (domain context, sources, methodology, foundational skills) and
-   deliberately DON'T chase fine-grained skills you're guessing at. Say so in
-   the plan: "specific needs will surface once you've planned — re-equip
-   then."
-2. **Post-plan re-equip** — after the methodology has produced a plan, spec,
-   or ticket map, run equip *against that document*: read it, derive concrete
-   capabilities from the actual planned steps (a real API to integrate, a
-   file format to parse, a validation the spec demands), diff against current
-   equipment, and propose only the delta. This is where the skills nobody
-   could anticipate pre-planning get added.
-
-Trigger the post-plan form when the user says "equip against the plan", "the
-plan's done — what do we need", points you at a spec/plan file, or re-runs
-/equip in a folder whose methodology has produced planning artifacts (a
-`specs/` dir, a wayfinder map) since the last equip.
+1. **The plan gate.** Present the Equip Plan and wait for explicit approval
+   before creating or installing anything. Easy mode compresses the plan to a
+   summary; it never removes the yes.
+2. **Project scope by default.** Components live in the target folder's
+   `.claude/` and CLAUDE.md, so equipment travels with the project, can't
+   pollute unrelated sessions, and is visible to anyone who opens the folder.
+   Global (`~/.claude/` — and note any `claude plugin install` lands
+   user-scope, machine-wide) only when the capability is genuinely
+   cross-project AND the user confirms that specifically-flagged row. For a
+   project-specific capability, borrowing a skill into the project beats a
+   machine-wide plugin install.
+3. **Equip ends where the work begins.** The deliverable is an equipped
+   session — never the work itself, and never the project's plan. Don't run
+   the methodology you install (equip *installs* planf3; a fresh session
+   *runs* it), don't draft the first work product "while you're here", don't
+   write specs. End every run with a handoff: what was set up, and the exact
+   next move to begin the work. This boundary exists because field use showed
+   sessions drifting from "set up for the newsletter" into "draft the
+   newsletter" — and it's what makes equip compose cleanly with whatever
+   methodology follows.
 
 ## Two modes: easy and expert
 
-Before anything else, establish how involved the user wants to be. Infer it
-from their phrasing when clear ("just set me up" → easy; "let's optimize this
-properly" → expert); otherwise ask one plain question:
+Establish first how involved the user wants to be. Infer it from phrasing
+when clear ("just set me up" → easy; "let's optimize this properly" →
+expert); otherwise ask one plain question:
 
 > "Want me to just set this up with good defaults (**easy**), or shall we go
 > through the choices together and tune it (**expert**)?"
 
 | | Easy | Expert |
 |---|---|---|
-| Interview | 2–3 plain-language questions; you fill the rest with sensible defaults | full interview, every dimension discussed |
-| Methodology | you pick from the menu and say why in one line | walk the menu, compare options, user chooses |
-| Plan | compact summary — what you'll add and one sentence each | full table, per-row rationale, alternatives that were rejected |
-| Scope | project-default applied silently; global rows still flagged | scope discussed per row |
-| Explainer | offered, simple language | offered, includes the tuning knobs they can adjust later |
+| Interview | 2–3 plain-language questions; sensible defaults fill the rest | full interview, every dimension discussed |
+| Methodology | you pick from the menu, one-line why | walk the menu, compare options, user chooses |
+| Plan | compact summary, one approval | full table, per-row rationale, rejected alternatives |
+| Explainer | offered, simple language | offered, includes the tuning knobs |
 
-What NEVER changes with mode: the approval gate (even easy mode shows the
-plan and waits for one yes), the global-scope confirmation, and
-reuse-before-build. Easy mode compresses conversation, not diligence — you
-still run the full inventory and ecosystem search, you just don't narrate it.
+The non-negotiables hold in both modes — easy mode compresses conversation,
+not diligence. Still run the full inventory and ecosystem search; just don't
+narrate them. Honor mid-flight switches: "just decide for me" → drop to easy;
+"wait, what were the options?" → open that decision up.
 
-Honor mid-flight switches: "just decide for me" → drop to easy; "wait, what
-were the options?" → open up to expert for that decision.
+## Equip is two moments, not one
 
-## The four phases
+Equipping happens twice around a plan:
 
-```
-1. INTERVIEW   what is the work, really?
-2. INVENTORY   what do we already have, right here?
-3. SEARCH      who has already solved the gaps well?
-4. PROPOSE     plan → approval → build only the remainder
-```
+1. **Pre-plan equip** (the default) — before any plan exists. Necessarily
+   approximate: equip the *general* capabilities the interview surfaces
+   (domain context, sources, methodology, foundational skills) and don't
+   chase fine-grained skills you're guessing at. Say so in the plan:
+   "specific needs will surface once you've planned — re-equip then."
+2. **Post-plan re-equip** — after the methodology has produced a plan, spec,
+   or ticket map, run equip *against that document*: derive concrete
+   capabilities from the actual planned steps (a real API to integrate, a
+   file format to parse, a validation the spec demands). This is where the
+   skills nobody could anticipate pre-planning get added.
 
-Never skip 2 or 3 to jump to authoring. Writing a skill from scratch is the
-*last* resort, not the default — a maintained community skill beats a
-one-session homebrew, and an installed plugin beats both for upgrades.
+Trigger the post-plan form when the user says "equip against the plan",
+points at a spec/plan file, or re-runs equip in a folder whose methodology
+has produced planning artifacts (a `specs/` dir, a wayfinder map) since the
+last run.
 
-### Phase 1 — Interview
+Any repeat run — post-plan or otherwise — **diffs instead of rebuilding**:
+re-run the inventory, show what changed, propose only the delta, and never
+overwrite an existing skill without showing the diff and getting approval.
 
-Establish the mode (easy/expert) first — it sets the depth of everything
-below. If the task was given as an argument, confirm your understanding
-instead of re-asking. Otherwise interview briefly — in easy mode 2–3 plain
-questions, in expert mode up to 5–6. You need:
+## Phase 1 — Interview
 
-- **Where the project lives** — ALWAYS ask and confirm this first, never
-  assume the current directory:
-  - **Existing folder** — which one? Confirm the exact path back to the user
-    before touching it.
-  - **From scratch** — a new project folder to create. Agree the parent
-    location and folder name; the build phase will scaffold folder + agentics
-    (`.claude/` tree) + context docs before equipping (see Phase 4).
-- **The work itself** — what gets produced or changed? What does "done" look like?
-- **Frequency** — one-off, or will this session type recur? (Recurring work
-  justifies commands and skills; one-offs usually just need context.)
+Mode first — it sets the depth of everything below. If the task came as an
+argument, confirm your understanding instead of re-asking. Then cover
+(easy: 2–3 questions, expert: up to 5–6):
+
+- **Where the project lives** — ask and confirm before touching anything;
+  don't assume the current directory:
+  - **Existing folder** — which one? Confirm the exact path back to the user.
+  - **From scratch** — agree the parent location and folder name; Phase 4
+    scaffolds folder + `.claude/` tree + context docs before equipping.
+- **The work itself** — what gets produced or changed? What does "done" look
+  like?
+- **Frequency** — one-off, or recurring? (Recurring work justifies commands
+  and skills; one-offs usually just need context.)
 - **Inputs and sources** — what files, services, or accounts does the work
-  touch? (This reveals MCP/auth needs.)
+  touch? (Reveals MCP/auth needs.)
 - **Quality bar** — is there a review/validation step worth automating?
-- **Who runs it** — just this user, or teammates/students who will need the
+- **Who runs it** — just this user, or teammates/students who need the
   folder to be self-explanatory?
 - **Process weight** — how should the work itself run? Read
   `references/methodology-menu.md`, profile the task (size × ambiguity ×
-  stakes), and ASK the user with a concrete recommendation: none (just go),
-  spec-first plan/execute (planf3), adversarial plan review (grilling /
-  grill-with-docs), ticket-mapped exploration for large fuzzy work
-  (wayfinder), brainstorm-to-delivery (superpowers), or full team simulation
-  (BMAD). Default to the lightest thing that fits; a chosen framework becomes
-  an install row in the plan like any other component.
+  stakes), and ask with a concrete recommendation: none, spec-first
+  plan/execute (planf3), adversarial plan review (grilling /
+  grill-with-docs), ticket-mapped exploration (wayfinder),
+  brainstorm-to-delivery (superpowers), or full team simulation (BMAD).
+  Lightest thing that fits; a chosen framework becomes an install row in the
+  plan like any other component.
 
 Distill the answers into 3–7 named **required capabilities** (e.g. "draft X
 threads in brand voice", "publish to Ghost", "validate frontmatter"). These
 drive everything downstream.
 
-**Post-plan pass:** when a plan/spec/ticket map exists, skip most of the
-interview — the document IS the interview. Read it and derive capabilities
-from the concrete planned steps, then proceed to inventory as normal.
+**Post-plan pass:** when a plan/spec/ticket map exists, skip most of this —
+the document IS the interview. Derive capabilities from the concrete planned
+steps, then proceed to inventory as normal.
 
-### Phase 2 — Inventory
+## Phase 2 — Inventory
 
-Take stock of what already covers each capability, from nearest to farthest:
+Take stock of what already covers each capability, nearest to farthest:
 
 1. **This session's loaded skills** — the available-skills list you can see.
-2. **Project level** — `.claude/skills/`, `.claude/agents/`,
-   `.claude/commands/`, `.claude/settings.json` hooks in the target folder and
-   its parents. (A from-scratch project has none — the inventory is still
-   worth running for what the parent tree and global level already supply.)
+2. **Project level** — `.claude/skills|agents|commands/` and
+   `.claude/settings.json` hooks in the target folder and its parents. (A
+   from-scratch project has none — still inventory what the parent tree and
+   global level supply.)
 3. **Global (user) level** — `~/.claude/skills/`, `~/.claude/agents/`,
    user-level CLAUDE.md.
-4. **Installed plugins** — `claude plugin list` (or read
-   `~/.claude/plugins/installed_plugins.json`). These are user-scoped: present
+4. **Installed plugins** — `claude plugin list` (or
+   `~/.claude/plugins/installed_plugins.json`). User-scoped: present
    everywhere on this machine.
-5. **Context cascade** — CLAUDE.md files from the target folder to root: what
-   constraints and pointers already exist? What does the folder's location
-   already supply?
-6. **Connected MCP servers** — tools already reachable for the sources named
-   in the interview.
+5. **Context cascade** — CLAUDE.md files from the target folder to root.
+6. **Connected MCP servers** — tools already reachable for the named sources.
 
-Mark each required capability: **covered** (name the component AND its scope —
-project / global / plugin / session), **partial** (what's missing), or
-**gap**. Scope matters: a capability covered only at global level won't travel
-with the folder — for anything a teammate or student must get by opening the
-project, treat global-only coverage as *partial* and consider a project-level
-copy or pointer.
+Mark each capability **covered** (name the component AND its scope — project
+/ global / plugin / session), **partial**, or **gap**. Scope matters here: a
+capability covered only globally won't travel with the folder — when a
+teammate or student must get it by opening the project, treat global-only
+coverage as *partial* and consider a project-level copy or pointer.
 
 Classify each gap:
 
@@ -188,41 +159,38 @@ Classify each gap:
 |----------|---------|
 | Critical | The task cannot be done well without it |
 | Enhancing | Would significantly improve quality or speed |
-| Nice-to-have | Minor convenience — default to skipping in v1 |
+| Nice-to-have | Minor convenience — default to skipping |
 
-### Phase 3 — Search the ecosystem
+## Phase 3 — Search the ecosystem
 
 For every Critical and Enhancing gap, look for an existing, well-regarded
-solution **before considering authoring**. Full search protocol and vetting
-criteria: `references/ecosystem-search.md`. In brief:
+solution before considering authoring. Full protocol and vetting checklist:
+`references/ecosystem-search.md`. In brief:
 
-1. Official plugin marketplace (`anthropics/claude-plugins-official`) and any
+1. Official plugin marketplace (`anthropics/claude-plugins-official`) and
    marketplaces already added on this machine.
-2. GitHub skill collections — search for the capability + "claude skill" /
-   "SKILL.md"; check anthropics/skills and the well-known community repos.
-3. Vet before adopting: recent commits, stars/forks as a signal (not proof),
-   readable SKILL.md under ~500 lines, no secrets/exfil patterns, license.
+2. GitHub skill collections — capability + "claude skill" / "SKILL.md";
+   anthropics/skills and the known community repos.
+3. Vet before adopting: alive, readable, right-sized, safe, licensed.
 
-For each gap record a verdict: **install** (plugin), **borrow** (copy a skill
-into `.claude/skills/` with attribution), or **author** (nothing suitable
-exists). Authoring must state *why* the found options were rejected.
+For each gap record a verdict: **install** (plugin), **borrow** (copy into
+`.claude/skills/` with attribution), or **author** (nothing suitable exists —
+and say why the found options were rejected).
 
-The chosen methodology (if any) goes through the same funnel: the menu in
+The chosen methodology goes through the same funnel: the menu in
 `references/methodology-menu.md` is a vetted starting point, but confirm the
-source is still alive before installing, and re-search if the user's need
-doesn't match anything on the menu.
+source is still alive, and re-search if the need matches nothing on it.
 
-### Phase 4 — Propose, then build
+## Phase 4 — Propose, then build
 
-Present the **Equip Plan** as a markdown table and wait for explicit approval
-before creating or installing anything:
+Present the **Equip Plan** and wait for approval:
 
 ```markdown
 ## Equip Plan: {task}
 
 **Target:** {confirmed path} ({existing folder | new — will be scaffolded})
-**Methodology:** {none | planf3 | wayfinder | ...} — {one-line why, and what
-was rejected as too heavy/light}
+**Methodology:** {none | planf3 | ...} — {one-line why; what was rejected as
+too heavy/light}
 
 ### Already covered
 | Capability | Covered by | Scope |
@@ -239,39 +207,27 @@ was rejected as too heavy/light}
 - ...
 ```
 
-Every row defaults to `project` scope. Flag any `global` row explicitly when
-presenting the plan ("row 1 installs machine-wide — OK?") and get it confirmed
-along with the plan itself.
-
-In **easy mode**, present the same plan as a short summary instead of the full
-table — "I'll install X (works everywhere on your machine — OK?), add a Y
-skill to this folder, and note your brand rules in the project's CLAUDE.md" —
-one approval, then build. The full table still exists; show it if asked.
+Flag any `global` row when presenting ("row 1 installs machine-wide — OK?").
+In easy mode, present the same plan as a short summary — "I'll install X
+(works everywhere on your machine — OK?), add a Y skill to this folder, note
+your brand rules in CLAUDE.md" — one approval, then build. The full table
+still exists; show it if asked.
 
 After approval, build in dependency order:
 
-- **Scaffold first, if from scratch** — before any equipping, create the
-  agreed folder with the minimum viable agentics and context:
-  - `CLAUDE.md` — purpose of the folder, constraints from the interview,
-    pointers (facts only; the *how* goes in skills)
-  - `README.md` — what this project is and how to work in it, for humans
-  - `.claude/skills/` / `.claude/agents/` / `.claude/commands/` — created
-    only when the plan actually puts something in them, never empty
-  - `docs/` or `context/` — only if the plan includes context docs
-  No speculative directories: every path created must be referenced by a plan
-  row.
-
+- **Scaffold first, if from scratch** — the agreed folder with minimum viable
+  agentics and context: `CLAUDE.md` (purpose, constraints, pointers — facts
+  only; the *how* goes in skills), `README.md` (for humans), and only the
+  `.claude/` and `docs/` directories a plan row actually populates. No
+  speculative directories.
 - **Install** — `claude plugin marketplace add <repo>` +
-  `claude plugin install <name>@<marketplace>`. Remember: user scope,
-  machine-wide — only for capabilities that deserve it.
-- **Borrow** — copy into the *project's* `.claude/skills/<name>/`, add a
-  `source:` line to the frontmatter crediting the origin repo, trim what
-  doesn't apply.
-- **Context docs** — additions to the project CLAUDE.md (constraints, facts,
-  pointers only) or a `docs/` reference file the skills can point to.
-- **Author** — follow `references/skill-authoring.md`: pushy description,
-  lean body, progressive disclosure, then trigger-test it.
-- **Agents / commands / hooks** — only when the decision tree below says so.
+  `claude plugin install <name>@<marketplace>`.
+- **Borrow** — copy into the project's `.claude/skills/<name>/`, add a
+  `source:` frontmatter line crediting the origin, trim what doesn't apply.
+- **Context docs** — project CLAUDE.md additions or a `docs/` reference file.
+- **Author** — per `references/skill-authoring.md`: pushy description, lean
+  body, progressive disclosure, then trigger-test.
+- **Agents / commands / hooks** — only when the decision tree says so.
 
 ### Component decision tree
 
@@ -284,41 +240,34 @@ Prefer the lightest component that does the job:
 - Deterministic validation of outputs → **hook**
 - One-off task → none of the above; just do the work with context
 
-### Verify
+### Verify and hand off
 
-- Each authored skill: run one realistic should-trigger prompt and one
-  near-miss should-NOT-trigger prompt (see `references/skill-authoring.md`).
-- Each install: confirm the skill/command appears (`claude plugin list`).
-- Report: what was added, where, the one-line "how to use it" for each — and
-  the handoff: the exact next move to begin the actual work (e.g. "fresh
-  session, run /planf3 — then come back and re-equip against the spec").
+- Each authored skill: one realistic should-trigger prompt and one near-miss
+  should-NOT-trigger prompt (see `references/skill-authoring.md`).
+- Each install: confirm it appears in `claude plugin list`.
+- Report: what was added, where, one line of "how to use it" each — and the
+  handoff: the exact next move to begin the actual work (e.g. "fresh session,
+  run /planf3 — then come back and re-equip against the spec").
 
-### Explain (optional, offered — never forced)
+### Explain (offered, never forced)
 
 After the report, offer an explainer of what was just set up:
 
-- **Quick breakdown** — one conversational message: what each component is in
-  plain language, why it closes which gap, how a session runs now, and three
-  copy-pasteable starter prompts.
+- **Quick breakdown** — one conversational message: each component in plain
+  language, the gap it closes, how a session runs now, three copy-pasteable
+  starter prompts.
 - **HTML explainer** — the same content as a self-contained page saved to
-  `docs/how-this-project-works.html` in the project, so it outlives this
-  conversation and works for teammates/students who weren't here. Recommend
-  this one when the interview said others will use the folder.
+  `docs/how-this-project-works.html`, so it outlives this conversation.
+  Recommend it when the interview said others will use the folder.
 
-Content outline, format rules, and the CLAUDE.md pointer line:
+Outline, format rules, and the CLAUDE.md pointer line:
 `references/explainer-guide.md`. On a re-equip that changes the setup, offer
 to regenerate the page.
 
-## Re-equipping
-
-On a repeat run in an already-equipped folder, diff instead of rebuilding:
-re-run the inventory, show what changed since last time, and propose only the
-delta. Never overwrite an existing skill without showing the diff and getting
-approval.
-
 ## Lineage
 
-This skill descends from the Atlas `self-scaffold`/`/equip` system
-(LowCodeDreamer/MyAgentStuff) and borrows skill-writing hygiene from
+Descends from the Atlas `self-scaffold`/`/equip` system
+(LowCodeDreamer/MyAgentStuff); skill-writing hygiene borrowed from
 revfactory/harness. For building whole *agent teams* rather than equipping a
-folder, harness is the deeper tool — recommend it instead of reimplementing it.
+folder, harness is the deeper tool — recommend it instead of reimplementing
+it.

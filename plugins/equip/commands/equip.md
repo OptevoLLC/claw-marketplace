@@ -3,60 +3,21 @@ description: Equip a project folder for a task — interview, inventory, ecosyst
 argument-hint: [task description]
 ---
 
-Equip a project folder for the following task:
+Use the `equip` skill to equip a project folder for this task:
 
 $ARGUMENTS
 
-Use the `equip` skill and follow its four phases in order:
+Follow the skill's phases exactly as written: establish easy/expert mode,
+confirm where the project lives (exact path of an existing folder, or agree a
+new one to scaffold), interview, inventory with scope labels, ecosystem
+search, then present the Equip Plan and stop for approval before creating or
+installing anything.
 
-0. **Mode** — establish easy vs expert before anything else (infer from
-   phrasing or ask one plain question): easy = 2–3 questions, good defaults,
-   compact plan summary, agent picks the methodology; expert = full
-   interview, walk the options, full plan table with per-row rationale.
-   Either way the approval gate, global-scope flags, and the full
-   inventory + ecosystem search still happen — easy mode compresses the
-   conversation, never the diligence.
-1. **Interview** — FIRST ask and confirm where the project lives: an existing
-   folder (confirm the exact path — never assume the current directory) or a
-   new folder to scaffold from scratch (agree parent location + name). Then,
-   if the task description above is empty, ask what the work is; if present,
-   confirm your understanding and fill the remaining interview points
-   (frequency, sources, quality bar, audience) with at most a few questions.
-   Then ask about PROCESS WEIGHT with a concrete recommendation from the
-   skill's `references/methodology-menu.md`: none, spec-first plan/execute
-   (planf3), plan grilling, wayfinder for large fuzzy work, superpowers, or
-   BMAD — lightest thing that fits. Distill into named required capabilities.
-2. **Inventory** — check loaded skills, the target project's `.claude/` tree,
-   the global `~/.claude/` level, installed plugins, the CLAUDE.md cascade,
-   and connected MCP servers. Mark each capability covered / partial / gap,
-   with severity — and label every finding with its scope (project / global /
-   plugin / session).
-3. **Search** — for each real gap, search the ecosystem for existing
-   well-regarded skills per the skill's `references/ecosystem-search.md`.
-   Record install / borrow / author verdicts with rationale.
-4. **Propose & build** — present the Equip Plan table (with its Methodology
-   line and Scope column;
-   every row defaults to project scope, and any global row must be flagged
-   for explicit confirmation) and STOP for approval. Only after approval:
-   scaffold the folder first if starting from scratch (CLAUDE.md + README +
-   only the `.claude/` dirs the plan populates), then install, borrow, write
-   context docs, and author remaining skills per
-   `references/skill-authoring.md`, then verify triggers and report what was
-   added, where, and how to use it. Finally, OFFER an explainer (per
-   `references/explainer-guide.md`): a quick conversational breakdown, or a
-   self-contained HTML page saved to `docs/how-this-project-works.html` in
-   the project — recommend the HTML version when others will use the folder.
-   Skip gracefully if declined.
+Two reminders field tests showed matter most:
 
-Do not create any files or install anything before the plan is approved, and
-never write to `~/.claude/` (global level) without the user explicitly
-confirming that specific row.
-
-HARD BOUNDARY: equip the session, then STOP. Do not start the project work,
-do not write the project's plan or spec (that belongs to the chosen
-methodology in its own session — install planf3, don't run it), and do not
-create work-product files. End with a handoff: what was set up and the exact
-next move to begin the work. Note in the plan that specific skills will
-surface once a plan exists — when the user returns with "equip against the
-plan" or points at a spec, derive capabilities from that document instead of
-re-interviewing and propose only the delta.
+- Equip the session, then stop. Never start the project work or write its
+  plan/spec — install the methodology, don't run it. End with a handoff to
+  the first real move.
+- If the user points at an existing plan or spec ("equip against the plan"),
+  that document is the interview: derive capabilities from it and propose
+  only the delta.
