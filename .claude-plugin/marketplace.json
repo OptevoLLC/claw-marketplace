@@ -15,7 +15,7 @@
     },
     {
       "name": "equip",
-      "description": "Equip a project folder for the work ahead — reuse before build. Interviews you about the task, confirms where the project lives (existing folder or scaffolded from scratch), inventories what's already available at project and global level, searches the ecosystem for well-regarded existing skills, and only authors what's genuinely missing. Everything lands at project level unless you say otherwise.",
+      "description": "Equip a project folder for the work ahead — reuse before build. Interviews you about the task, confirms where the project lives (existing folder or scaffolded from scratch), recommends how heavy the process should be (planf3, grilling, wayfinder, superpowers, BMAD — or just go), inventories what's already available at project and global level, searches the ecosystem for well-regarded existing skills, and only authors what's genuinely missing. Everything lands at project level unless you say otherwise.",
       "source": "./plugins/equip",
       "category": "workflow"
     }

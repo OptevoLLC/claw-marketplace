@@ -1,6 +1,6 @@
 ---
 name: equip
-description: Equip a project folder for a task. Interviews the user about the work and confirms where the project lives (existing folder, or a new folder scaffolded from scratch), inventories skills/agents/commands/context already available at project and global level, searches marketplaces and GitHub for well-regarded existing skills to fill gaps, and only authors what is genuinely missing — defaulting everything to project level. Use whenever the user runs /equip, says "equip this project", "set up this folder for X", "start a new project for X", "what am I missing for this task", "scaffold my session", "gap analysis", or is starting a new kind of work in a folder that has no supporting infrastructure yet. Also use for follow-ups: "re-equip", "update the equipment", "we added a new task type".
+description: Equip a project folder for a task. Interviews the user about the work and confirms where the project lives (existing folder, or a new folder scaffolded from scratch), recommends a process weight/methodology for the work (none, spec-first like planf3, plan grilling, wayfinder for large fuzzy efforts, superpowers, BMAD), inventories skills/agents/commands/context already available at project and global level, searches marketplaces and GitHub for well-regarded existing skills to fill gaps, and only authors what is genuinely missing — defaulting everything to project level. Use whenever the user runs /equip, says "equip this project", "set up this folder for X", "start a new project for X", "what am I missing for this task", "what process/framework should I use for this", "scaffold my session", "gap analysis", or is starting a new kind of work in a folder that has no supporting infrastructure yet. Also use for follow-ups: "re-equip", "update the equipment", "we added a new task type".
 ---
 
 # Equip — reuse before build
@@ -73,6 +73,14 @@ You need:
 - **Quality bar** — is there a review/validation step worth automating?
 - **Who runs it** — just this user, or teammates/students who will need the
   folder to be self-explanatory?
+- **Process weight** — how should the work itself run? Read
+  `references/methodology-menu.md`, profile the task (size × ambiguity ×
+  stakes), and ASK the user with a concrete recommendation: none (just go),
+  spec-first plan/execute (planf3), adversarial plan review (grilling /
+  grill-with-docs), ticket-mapped exploration for large fuzzy work
+  (wayfinder), brainstorm-to-delivery (superpowers), or full team simulation
+  (BMAD). Default to the lightest thing that fits; a chosen framework becomes
+  an install row in the plan like any other component.
 
 Distill the answers into 3–7 named **required capabilities** (e.g. "draft X
 threads in brand voice", "publish to Ghost", "validate frontmatter"). These
@@ -130,6 +138,11 @@ For each gap record a verdict: **install** (plugin), **borrow** (copy a skill
 into `.claude/skills/` with attribution), or **author** (nothing suitable
 exists). Authoring must state *why* the found options were rejected.
 
+The chosen methodology (if any) goes through the same funnel: the menu in
+`references/methodology-menu.md` is a vetted starting point, but confirm the
+source is still alive before installing, and re-search if the user's need
+doesn't match anything on the menu.
+
 ### Phase 4 — Propose, then build
 
 Present the **Equip Plan** as a markdown table and wait for explicit approval
@@ -139,6 +152,8 @@ before creating or installing anything:
 ## Equip Plan: {task}
 
 **Target:** {confirmed path} ({existing folder | new — will be scaffolded})
+**Methodology:** {none | planf3 | wayfinder | ...} — {one-line why, and what
+was rejected as too heavy/light}
 
 ### Already covered
 | Capability | Covered by | Scope |

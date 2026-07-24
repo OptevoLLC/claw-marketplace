@@ -1,7 +1,7 @@
 {
   "name": "equip",
-  "description": "Equip a project folder for the work ahead. Interviews you about the task and where the project lives (existing folder or scaffolded from scratch), inventories the skills/agents/context already available at project and global level, searches the ecosystem for well-regarded existing skills to fill gaps, and only authors what's genuinely missing — defaulting everything to project level. Reuse before build.",
-  "version": "0.1.0",
+  "description": "Equip a project folder for the work ahead. Interviews you about the task and where the project lives (existing folder or scaffolded from scratch), recommends a process weight for the work itself (planf3, grilling, wayfinder, superpowers, BMAD — or none), inventories the skills/agents/context already available at project and global level, searches the ecosystem for well-regarded existing skills to fill gaps, and only authors what's genuinely missing — defaulting everything to project level. Reuse before build.",
+  "version": "0.2.0",
   "author": {
     "name": "Optevo Claw",
     "url": "https://optevoclaw.com"

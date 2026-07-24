@@ -9,13 +9,29 @@ loaded, and the model reinvents a workflow somebody already perfected.
 `/equip` fixes that with four phases:
 
 ```
-1. INTERVIEW   where does the project live, and what is the work, really?
+1. INTERVIEW   where does the project live, what is the work, how heavy a process?
 2. INVENTORY   what does this folder + machine already have (and at what scope)?
 3. SEARCH      who in the ecosystem already solved the gaps well?
 4. PROPOSE     an Equip Plan you approve — then it builds only the remainder
 ```
 
-Two disciplines it teaches (and enforces):
+The interview includes a **methodology question** — the second big quality
+lever alongside skills. Based on the task's size, ambiguity, and stakes, it
+recommends how the work itself should run and offers to install the framework:
+
+| Task feels like | It suggests |
+|---|---|
+| Small and clear | nothing — just go |
+| Medium, correctness matters | [planf3](https://github.com/disler/planf3) — spec first, then execute |
+| Plan feels shaky | [grilling / grill-with-docs](https://github.com/mattpocock/skills) before building |
+| Big and fuzzy | [wayfinder](https://github.com/mattpocock/skills) — map it as tickets |
+| Idea → shipped thing, guided end-to-end | [superpowers](https://github.com/obra/superpowers) |
+| Multi-week build, full team simulation | [BMAD](https://github.com/bmad-code-org/BMAD-METHOD) |
+
+Always the lightest thing that fits — heavy process on a small task burns the
+session on ceremony.
+
+Two more disciplines it teaches (and enforces):
 
 - **Reuse before build.** Never author a skill until you've checked that it
   doesn't already exist locally and nobody has published a better one.
