@@ -63,7 +63,18 @@ install step.)
 /equip draft and publish a weekly newsletter from my notes folder
 ```
 
-Or just `/equip` and answer the interview. It always starts by confirming the
+Or just `/equip` and answer the interview. First question is how involved you
+want to be:
+
+- **Easy** — "just set me up." Two or three plain questions, good defaults,
+  a short summary to approve, done. The full inventory and ecosystem search
+  still run — you just don't sit through them.
+- **Expert** — walk every choice together: methodology options compared,
+  per-row rationale, scope discussed, alternatives shown. For when you want
+  to optimize and align, not just start.
+
+You can switch mid-flight ("just decide for me" / "wait, what were the
+options?"). It always starts by confirming the
 target: an **existing folder** (exact path confirmed back to you) or a **new
 project from scratch** — in which case it scaffolds the folder, a CLAUDE.md,
 a README, and only the `.claude/` directories the plan actually populates,

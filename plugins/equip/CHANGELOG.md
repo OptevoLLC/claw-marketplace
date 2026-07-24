@@ -1,5 +1,14 @@
 # Changelog — equip
 
+## 0.4.0 (2026-07-24)
+
+Easy/expert mode, established first (inferred from phrasing or one plain
+question). Easy: 2–3 questions, agent-picked defaults and methodology,
+compact plan summary, one approval. Expert: full interview, menu walked,
+per-row rationale and scope discussion. Invariant in both: approval gate,
+global-scope flags, full inventory + ecosystem search — easy compresses
+conversation, never diligence. Mid-flight switching honored.
+
 ## 0.3.0 (2026-07-24)
 
 Optional explainer phase: after the build report, offer a plain-language

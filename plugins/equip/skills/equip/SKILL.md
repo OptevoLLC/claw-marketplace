@@ -1,6 +1,6 @@
 ---
 name: equip
-description: Equip a project folder for a task. Interviews the user about the work and confirms where the project lives (existing folder, or a new folder scaffolded from scratch), recommends a process weight/methodology for the work (none, spec-first like planf3, plan grilling, wayfinder for large fuzzy efforts, superpowers, BMAD), inventories skills/agents/commands/context already available at project and global level, searches marketplaces and GitHub for well-regarded existing skills to fill gaps, and only authors what is genuinely missing — defaulting everything to project level. Use whenever the user runs /equip, says "equip this project", "set up this folder for X", "start a new project for X", "what am I missing for this task", "what process/framework should I use for this", "scaffold my session", "gap analysis", or is starting a new kind of work in a folder that has no supporting infrastructure yet. Also use for follow-ups: "re-equip", "update the equipment", "we added a new task type".
+description: Equip a project folder for a task. Interviews the user about the work and confirms where the project lives (existing folder, or a new folder scaffolded from scratch), recommends a process weight/methodology for the work (none, spec-first like planf3, plan grilling, wayfinder for large fuzzy efforts, superpowers, BMAD), inventories skills/agents/commands/context already available at project and global level, searches marketplaces and GitHub for well-regarded existing skills to fill gaps, and only authors what is genuinely missing — defaulting everything to project level. Runs in easy mode (good defaults, minimal questions, done for you) or expert mode (walk every choice together and optimize). Use whenever the user runs /equip, says "equip this project", "set up this folder for X", "just set me up for X", "start a new project for X", "what am I missing for this task", "what process/framework should I use for this", "scaffold my session", "gap analysis", or is starting a new kind of work in a folder that has no supporting infrastructure yet. Also use for follow-ups: "re-equip", "update the equipment", "we added a new task type".
 ---
 
 # Equip — reuse before build
@@ -39,6 +39,31 @@ Two machine realities to state honestly in the plan:
 The Equip Plan table carries a **Scope** column, and any `global` row must be
 called out for confirmation before building.
 
+## Two modes: easy and expert
+
+Before anything else, establish how involved the user wants to be. Infer it
+from their phrasing when clear ("just set me up" → easy; "let's optimize this
+properly" → expert); otherwise ask one plain question:
+
+> "Want me to just set this up with good defaults (**easy**), or shall we go
+> through the choices together and tune it (**expert**)?"
+
+| | Easy | Expert |
+|---|---|---|
+| Interview | 2–3 plain-language questions; you fill the rest with sensible defaults | full interview, every dimension discussed |
+| Methodology | you pick from the menu and say why in one line | walk the menu, compare options, user chooses |
+| Plan | compact summary — what you'll add and one sentence each | full table, per-row rationale, alternatives that were rejected |
+| Scope | project-default applied silently; global rows still flagged | scope discussed per row |
+| Explainer | offered, simple language | offered, includes the tuning knobs they can adjust later |
+
+What NEVER changes with mode: the approval gate (even easy mode shows the
+plan and waits for one yes), the global-scope confirmation, and
+reuse-before-build. Easy mode compresses conversation, not diligence — you
+still run the full inventory and ecosystem search, you just don't narrate it.
+
+Honor mid-flight switches: "just decide for me" → drop to easy; "wait, what
+were the options?" → open up to expert for that decision.
+
 ## The four phases
 
 ```
@@ -54,9 +79,10 @@ one-session homebrew, and an installed plugin beats both for upgrades.
 
 ### Phase 1 — Interview
 
-If the task was given as an argument, confirm your understanding instead of
-re-asking. Otherwise interview briefly — 3 to 5 questions, not a questionnaire.
-You need:
+Establish the mode (easy/expert) first — it sets the depth of everything
+below. If the task was given as an argument, confirm your understanding
+instead of re-asking. Otherwise interview briefly — in easy mode 2–3 plain
+questions, in expert mode up to 5–6. You need:
 
 - **Where the project lives** — ALWAYS ask and confirm this first, never
   assume the current directory:
@@ -173,6 +199,11 @@ was rejected as too heavy/light}
 Every row defaults to `project` scope. Flag any `global` row explicitly when
 presenting the plan ("row 1 installs machine-wide — OK?") and get it confirmed
 along with the plan itself.
+
+In **easy mode**, present the same plan as a short summary instead of the full
+table — "I'll install X (works everywhere on your machine — OK?), add a Y
+skill to this folder, and note your brand rules in the project's CLAUDE.md" —
+one approval, then build. The full table still exists; show it if asked.
 
 After approval, build in dependency order:
 

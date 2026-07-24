@@ -9,6 +9,13 @@ $ARGUMENTS
 
 Use the `equip` skill and follow its four phases in order:
 
+0. **Mode** — establish easy vs expert before anything else (infer from
+   phrasing or ask one plain question): easy = 2–3 questions, good defaults,
+   compact plan summary, agent picks the methodology; expert = full
+   interview, walk the options, full plan table with per-row rationale.
+   Either way the approval gate, global-scope flags, and the full
+   inventory + ecosystem search still happen — easy mode compresses the
+   conversation, never the diligence.
 1. **Interview** — FIRST ask and confirm where the project lives: an existing
    folder (confirm the exact path — never assume the current directory) or a
    new folder to scaffold from scratch (agree parent location + name). Then,
