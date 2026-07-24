@@ -70,6 +70,13 @@ a README, and only the `.claude/` directories the plan actually populates,
 before equipping it. Nothing is installed or written until you approve the
 Equip Plan. Re-run it later in the same folder and it proposes only the delta.
 
+When it's done, it offers an **explainer**: a quick chat breakdown of what
+was set up and why, or a self-contained HTML page saved into the project
+(`docs/how-this-project-works.html`) — plain-language component guide, folder
+map, how a session runs under the chosen methodology, and your first three
+prompts. Take the HTML one if teammates or future-you will open this folder
+cold.
+
 ## What it creates (only ever with approval)
 
 | Preference order | Component | Default scope | When |

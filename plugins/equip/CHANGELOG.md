@@ -1,5 +1,14 @@
 # Changelog — equip
 
+## 0.3.0 (2026-07-24)
+
+Optional explainer phase: after the build report, offer a plain-language
+breakdown of what was set up — conversational, or a self-contained HTML page
+saved to `docs/how-this-project-works.html` in the project (recommended when
+teammates/students will use the folder). New `references/explainer-guide.md`
+with the six-section outline, offline-HTML rules, and CLAUDE.md pointer;
+re-equips offer to regenerate the page.
+
 ## 0.2.0 (2026-07-24)
 
 Methodology as a fifth equip dimension: the interview now profiles the task

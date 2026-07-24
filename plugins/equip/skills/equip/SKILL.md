@@ -217,6 +217,22 @@ Prefer the lightest component that does the job:
 - Each install: confirm the skill/command appears (`claude plugin list`).
 - Report: what was added, where, and the one-line "how to use it" for each.
 
+### Explain (optional, offered — never forced)
+
+After the report, offer an explainer of what was just set up:
+
+- **Quick breakdown** — one conversational message: what each component is in
+  plain language, why it closes which gap, how a session runs now, and three
+  copy-pasteable starter prompts.
+- **HTML explainer** — the same content as a self-contained page saved to
+  `docs/how-this-project-works.html` in the project, so it outlives this
+  conversation and works for teammates/students who weren't here. Recommend
+  this one when the interview said others will use the folder.
+
+Content outline, format rules, and the CLAUDE.md pointer line:
+`references/explainer-guide.md`. On a re-equip that changes the setup, offer
+to regenerate the page.
+
 ## Re-equipping
 
 On a repeat run in an already-equipped folder, diff instead of rebuilding:
